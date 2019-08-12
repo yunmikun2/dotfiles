@@ -1,0 +1,146 @@
+[colors]
+background = #f7f7f7
+background-alt = #a8a19f
+foreground = #1b1918
+foreground-alt = #2b2928
+extrabg = #407ee7
+# extrabg = #550366d6
+extrafg = #fff
+urgent = #f22c40
+
+[utils]
+asdf = 0
+
+[bar/top]
+width = 100%
+height = 24
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border = 0
+
+padding-left = 1
+padding-right = 1
+
+module-margin-left = 0
+module-margin-right = 2
+
+font-0 = NotoSans:pixelsize=12:weight=140;2
+line-size = 2
+
+modules-left = title
+modules-center = date
+modules-right = i3 keyboard settings user
+
+tray-position = right
+tray-padding = 2
+tray-background = ${colors.extrabg}
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+
+[module/title]
+type = internal/xwindow
+
+format = <label>
+format-padding = 2
+
+label = %title%
+label-maxlen = 70
+label-font = 1
+
+label-empty = Copland OS
+label-empty-font = 1
+
+[module/date]
+type = internal/date
+format = <label>
+
+date = "%a, "
+date-alt = "%d %b %Y, "
+
+time = "%H:%M"
+time-alt = %H:%M
+
+label = %date% %time%
+label-font = 1
+
+interval = 1
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+strip-wsnumbers = true
+
+enable-scroll = false
+
+label-focused = %name%
+label-focused-font = 1
+label-focused-padding = 1
+label-focused-foreground = ${colors.foreground}
+label-focused-underline = ${colors.foreground}
+
+label-unfocused = %name%
+label-unfocused-font = 1
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-padding = 1
+
+label-visible = 
+label-visible-padding = 0
+
+label-urgent = %name%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.urgent}
+label-urgent-padding = 1
+label-urgent-font = 1
+
+[module/keyboard]
+type = internal/xkeyboard
+
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+
+format = <label-layout> <label-indicator>
+format-spacing = 0
+
+label-layout = %layout%
+label-layout-padding = 2
+label-layout-background = ${colors.extrabg}
+label-layout-foreground = ${colors.extrafg}
+label-layout-font = 1
+
+label-indicator = %name%
+label-indicator-padding = 2
+label-indicator-background = ${colors.urgent}
+
+[module/user]
+type = custom/script
+exec = id -u -n
+click-left = shutdown_dialogue
+
+label-font = 1
+#label-underline = #fff
+label-padding = 1
+label-padding-right = 2
+
+[module/close]
+type = custom/script
+exec = echo x
+click-left = xkill
+
+label-font = 1
+label-padding = 2
+label-background = ${colors.urgent}
+label-foreground = ${colors.extrafg}
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 0

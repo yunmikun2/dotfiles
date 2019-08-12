@@ -1,0 +1,12 @@
+.config/*
+!.config/i3
+!.config/alacritty
+!.config/compton
+!.config/gtk-2.0
+!.config/gtk-3.0
+!.config/dunst
+!.config/polybar
+!.config/mpv/mpv.conf
+!.config/rofi
+!.config/Trolltech.conf
+
