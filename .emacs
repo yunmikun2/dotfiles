@@ -159,8 +159,8 @@
   :bind ("C-c i" . 'string-inflection-cycle))
 
 (use-package org
-  :custom
-  (org-src-fontify-natively t)
+  :ensure t
+  :custom (org-src-fontify-natively t)
   :custom-face
   (org-level-1 (nil ((:height 150))))
   (org-level-2 (nil ((:height 140))))
@@ -184,7 +184,9 @@
 
 (use-package smartparens
   :ensure t
-  :config (smartparens-global-mode 1)
+  :config
+  (require 'smartparens-config)
+  (smartparens-global-strict-mode +1)
   :custom-face (sp-pair-overlay-face (nil ((:background "#EEE")))))
 
 (use-package smooth-scroll
@@ -248,6 +250,29 @@
 (use-package tramp
   :ensure t
   :custom (tramp-default-method "ssh"))
+
+(use-package git-gutter
+  :ensure t
+  :config (global-git-gutter-mode +1)
+  :custom
+  (git-gutter:update-interval 2)
+  ;; (git-gutter:ask-p nil "Don't ask on revert.")
+  (git-gutter:modified-sign " ")
+  (git-gutter:added-sign " ")
+  (git-gutter:deleted-sign " ")
+  :custom-face
+  (git-gutter:modified ((nil (:background "#C38418"))))
+  (git-gutter:added ((nil (:background "#335EA8"))))
+  (git-gutter:deleted ((nil (:background "#F22C40"))))
+  :bind
+  ("C-c g n" . git-gutter:next-hunk)
+  ("C-c g p" . git-gutter:previous-hunk)
+  ("C-c g r" . git-gutter:revert-hunk)
+  ("C-c g c" . git-gutter:stage-hunk)
+  ("C-c g s" . git-gutter:popup-hunk)
+  ("C-c g m" . git-gutter:mark-hunk))
+
+(use-package magit :ensure t)
 
 (use-package ranger
   :ensure t
@@ -404,7 +429,7 @@
   :ensure t
   :hook
   (elixir-mode . (lambda ()
-                   (format-all-mode)
+                   (add-hook 'before-save-hook 'elixir-format nil t)
                    (alchemist-mode-hook)
                    (dumb-jump-mode)))
   :bind
@@ -412,7 +437,8 @@
         ("C-c a f c v" . 'my/ex-find-controller-for-view)
         ("C-c a f v c" . 'my/ex-find-view-for-controller)
         ("C-c a f c s" . 'my/ex-find-controller-for-swagger)
-        ("C-c a f s c" . 'my/ex-find-swagger-for-controller)))
+        ("C-c a f s c" . 'my/ex-find-swagger-for-controller)
+        ("C-c a d" . 'elixir-mode-open-docs-stable)))
 
 (use-package alchemist
   :ensure t
@@ -434,7 +460,8 @@
             'common-lisp-indent-function)
        (put 'lambda 'lisp-indent-function 'defun)
        (put 'while 'lisp-indent-function 1)
-       (put 'if 'lisp-indent-function 1))))
+       (put 'if 'lisp-indent-function 1)))
+  :bind ("C-c e e" . 'eval-region))
 
 (use-package typescript-mode
   :ensure t
