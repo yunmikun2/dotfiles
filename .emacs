@@ -97,76 +97,18 @@
 (put 'use-package 'lisp-indent-function 1)
 
 (use-package use-package-core
-  :custom
-  (use-package-enable-imenu-support t))
-
-(use-package emacs
-  :init
-  (tool-bar-mode -1)
-  (menu-bar-mode -1)
-  (scroll-bar-mode -1)
-  (linum-mode 1)
-  (setq-default cursor-type 'bar)
-  (setq-default frame-title-format '("Emacs: %f"))
-  (column-number-mode 1)
-  (setq-default show-trailing-whitespace t)
-  (my/set-system-font "Iosevka Light-12")
-  (put 'narrow-to-page 'disabled nil)
-  (put 'narrow-to-region 'disabled nil)
-  (put 'scroll-left 'disabled nil)
-  (setq inhibit-startup-screen t)
-  (delete-selection-mode 1)
-  (setq ring-bell-function 'ignore)
-  ;; I don't know what it is.
-  (put 'upcase-region 'disabled nil)
-  ;; Backups.
-  (setq backup-directory-alist '((".*" . "~/.emacs.d/backups")))
-  :bind
-  ("C-;" . 'my/comment-or-uncomment)
-  ("C-x k" . 'kill-current-buffer)
-  ("C-c z" . 'my/zoom-font)
-  ("C-x n f" . 'fold-this)
-  ("C-x n u" . 'fold-this-unfold-at-point))
-
-(use-package string-inflection
-  :ensure t
-  :bind
-  ("C-c i" . 'string-inflection-cycle))
-
-(use-package org
-  :config
-  (setq org-src-fontify-natively t)
-  (set-face-attribute 'org-level-1 nil :height 150)
-  (set-face-attribute 'org-level-2 nil :height 140)
-  (set-face-attribute 'org-level-3 nil :height 130)
-  (set-face-attribute 'org-level-4 nil :height 125)
-  (set-face-attribute 'org-level-5 nil :height 120)
-  (set-face-attribute 'org-level-6 nil :height 120))
-
-(use-package markdown-mode
-  :ensure t
-  :config
-  (set-face-attribute 'markdown-header-face-1 nil :height 150)
-  (set-face-attribute 'markdown-header-face-2 nil :height 140)
-  (set-face-attribute 'markdown-header-face-3 nil :height 130)
-  (set-face-attribute 'markdown-header-face-4 nil :height 125)
-  (set-face-attribute 'markdown-header-face-5 nil :height 120)
-  (set-face-attribute 'markdown-header-face-6 nil :height 120)
-  (define-key markdown-mode-map (kbd "C-c C-c v") 'my/switch-markdown-mode))
+  :custom (use-package-enable-imenu-support t))
 
 (use-package cus-edit
-  :custom
-  (custom-file null-device "Don't store customizations"))
+  :custom (custom-file null-device "Don't store customizations"))
 
 (use-package gcmh
   :ensure t
-  :init
-  (gcmh-mode 1))
+  :init (gcmh-mode 1))
 
 (use-package system-packages
   :ensure t
-  :custom
-  (system-packages-noconfirm t))
+  :custom (system-packages-noconfirm t))
 
 (use-package use-package-ensure-system-package :ensure t)
 
@@ -180,140 +122,181 @@
 (use-package quelpa
   :ensure t
   :defer t
-  :custom
-  (quelpa-update-melpa-p nil "Don't update the MELPA git repo."))
+  :custom (quelpa-update-melpa-p nil "Don't update the MELPA git repo."))
 
 (use-package quelpa-use-package :ensure t)
 
+(use-package emacs
+  :init
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  (linum-mode 1)
+  (column-number-mode 1)
+  (my/set-system-font "Iosevka Light-12")
+  (put 'narrow-to-page 'disabled nil)
+  (put 'narrow-to-region 'disabled nil)
+  (put 'scroll-left 'disabled nil)
+  (delete-selection-mode 1)
+  ;; I don't know what it is.
+  (put 'upcase-region 'disabled nil)
+  :custom
+  (inhibit-startup-screen t)
+  (ring-bell-function 'ignore)
+  (backup-directory-alist '((".*" . "~/.emacs.d/backups")) "Backups")
+  (cursor-type 'bar)
+  (frame-title-format '("Emacs: %f"))
+  (show-trailing-whitespace t)
+  :bind
+  ("C-;" . 'my/comment-or-uncomment)
+  ("C-x k" . 'kill-current-buffer)
+  ("C-c z" . 'my/zoom-font)
+  ("C-x n f" . 'fold-this)
+  ("C-x n u" . 'fold-this-unfold-at-point))
+
+(use-package string-inflection
+  :ensure t
+  :bind ("C-c i" . 'string-inflection-cycle))
+
+(use-package org
+  :custom
+  (org-src-fontify-natively t)
+  :custom-face
+  (org-level-1 (nil ((:height 150))))
+  (org-level-2 (nil ((:height 140))))
+  (org-level-3 (nil ((:height 130))))
+  (org-level-4 (nil ((:height 125))))
+  (org-level-5 (nil ((:height 120))))
+  (org-level-6 (nil ((:height 120)))))
+
+(use-package markdown-mode
+  :ensure t
+  :custom-face
+  (markdown-header-face-1 (nil ((:height 150))))
+  (markdown-header-face-2 (nil ((:height 140))))
+  (markdown-header-face-3 (nil ((:height 130))))
+  (markdown-header-face-4 (nil ((:height 125))))
+  (markdown-header-face-5 (nil ((:height 120))))
+  (markdown-header-face-6 (nil ((:height 120))))
+  :bind
+  (:map markdown-mode-map
+        ("C-c C-c v" . 'my/switch-markdown-mode)))
+
 (use-package smartparens
   :ensure t
-  :config
-  (smartparens-global-mode 1)
-  (set-face-attribute 'sp-pair-overlay-face nil :background "#EEE"))
+  :config (smartparens-global-mode 1)
+  :custom-face (sp-pair-overlay-face (nil ((:background "#EEE")))))
 
 (use-package smooth-scroll
   :ensure t
-  :config
-  (smooth-scroll-mode 1))
+  :config (smooth-scroll-mode 1))
 
 (use-package sublime-themes
   :ensure t
-  :config
-  (load-theme 'mccarthy t))
+  :config (load-theme 'mccarthy t))
 
 (use-package sublimity
   :ensure t
-  :config
-  (require 'sublimity-map)
-  (sublimity-map-set-delay nil)
-  (setq sublimity-map-size 20)
-  (setq sublimity-map-fraction 0.3)
-  (setq sublimity-map-text-scale -7)
-  :bind
-  ([f9] . 'sublimity-mode))
+  :bind ([f9] . 'sublimity-mode))
+
+(use-package sublimity-map
+  :config (sublimity-map-set-delay nil)
+  :custom
+  (sublimity-map-size 20)
+  (sublimity-map-fraction 0.3)
+  (sublimity-map-text-scale -7))
 
 (use-package mood-line
   :ensure t
-  :config
-  (mood-line-mode)
-  (set-face-attribute 'mode-line nil :background "#335EA8")
-  (set-face-attribute 'mode-line-inactive nil :background "#9B9C97")
+  :config (mood-line-mode)
+  :custom-face
+  (mode-line ((nil (:background "#335EA8"))))
+  (mode-line-inactive ((nil (:background "#9B9C97"))))
   ;; File position.
-  (set-face-attribute 'mood-line-unimportant nil :foreground "#EEE")
+  (mood-line-unimportant ((nil (:foreground "#EEE"))))
   ;; Not modified git line
-  (set-face-attribute 'mood-line-status-grayed-out nil :foreground "#EEE")
+  (mood-line-status-grayed-out ((nil (:foreground "#EEE"))))
   ;; Modified git line.
-  (set-face-attribute 'mood-line-status-info nil :foreground "#EEE"))
+  (mood-line-status-info ((nil (:foreground "#EEE")))))
 
 (use-package rainbow-delimiters
   :ensure t
-  :config
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package paren
   :ensure t
-  :config
-  (show-paren-mode 1))
+  :config (show-paren-mode 1))
 
 (use-package ivy
   :ensure t
-  :config
-  (ivy-mode 1)
-  (setq dumb-jump-selector 'ivy))
+  :config (ivy-mode 1)
+  :custom (dumb-jump-selector 'ivy))
 
 (use-package ace-window
   :ensure t
   :bind
-  (("M-o" . 'ace-window)
-   ("C-x o" . 'ace-window)))
+  ("M-o" . 'ace-window)
+  ("C-x o" . 'ace-window))
 
 (use-package neotree
   :ensure t
-  :bind
-  ([f8] . 'neotree-toggle)
-  :config
-  (setq neo-window-position 'right)
-  (setq neo-window-width 60))
+  :bind ([f8] . 'neotree-toggle)
+  :custom
+  (neo-window-position 'right)
+  (neo-window-width 60))
 
 (use-package tramp
   :ensure t
-  :config
-  (setq tramp-default-method "ssh"))
+  :custom (tramp-default-method "ssh"))
 
 (use-package ranger
   :ensure t
-  :bind
-  ("C-x C-d" . 'deer)
-  :config
-  (ranger-override-dired-mode t)
-  (setq ranger-cleanup-eagerly t)
-  (setq ranger-show-hidden t))
+  :bind ("C-x C-d" . 'deer)
+  :custom
+  (ranger-cleanup-eagerly t)
+  (ranger-show-hidden t)
+  :config (ranger-override-dired-mode t))
 
 (use-package auto-complete
   :ensure t
-  :config
-  (auto-complete-mode 1))
+  :config (auto-complete-mode 1))
 
 (use-package company
   :ensure t
-  :config
-  (company--idle-delay)
-  (add-hook 'after-init-hook 'global-company-mode)
-  :bind
-  ("<backtab>" . 'company-complete-common-or-cycle))
+  :config (company--idle-delay)
+  :hook (after-init . global-company-mode)
+  :bind ("<backtab>" . 'company-complete-common-or-cycle))
 
 (use-package company-quickhelp
   :ensure t
-  :config
-  (company-quickhelp-mode 1))
+  :config (company-quickhelp-mode 1))
 
 (use-package projectile
   :ensure t
-  :config
-  (projectile-mode +1)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (setq projectile-project-root-files-functions
-        '(projectile-root-local
-          projectile-root-top-down
-          projectile-root-bottom-up
-          projectile-root-top-down-recurring))
+  :config (projectile-mode +1)
+  :custom
+  (projectile-project-root-files-functions
+   '(projectile-root-local projectile-root-top-down projectile-root-bottom-up
+     projectile-root-top-down-recurring)
+   "Projectile project searcher.")
   :bind
   ("C-'" . 'projectile-previous-project-buffer)
-  ("C-\"" . 'projectile-next-project-buffer))
+  ("C-\"" . 'projectile-next-project-buffer)
+  (:map projectile-mode-map
+        ("C-c p" . 'projectile-command-map)))
 
 (use-package reverse-im
-  :config
-  (reverse-im-activate "russian-computer"))
+  :ensure t
+  :config (reverse-im-activate "russian-computer"))
 
 (use-package multiple-cursors
   :ensure t
-  :config
   :bind
-  (("C-." . 'mc/mark-next-like-this)
-   ("C->" . 'mc/unmark-next-like-this)
-   ("C-," . 'mc/mark-previous-like-this)
-   ("C-<" . 'mc/unmark-previous-like-this)
-   ("C-c C-<" . 'mc/mark-all-like-this)))
+  ("C-." . 'mc/mark-next-like-this)
+  ("C->" . 'mc/unmark-next-like-this)
+  ("C-," . 'mc/mark-previous-like-this)
+  ("C-<" . 'mc/unmark-previous-like-this)
+  ("C-c C-<" . 'mc/mark-all-like-this))
 
 (use-package swiper
   :ensure t
@@ -323,17 +306,18 @@
 
 (use-package counsel
   :ensure t
-  :config
-  (setq projectile-project-switch-action 'counsel-projectile-switch-to-buffer)
-  (setq projectile-project-search-path '("~/wrk/"))
-  (define-key projectile-mode-map (kbd "C-x i") 'counsel-imenu)
+  :custom
+  (projectile-project-switch-action 'counsel-projectile-switch-to-buffer)
+  (projectile-project-search-path '("~/wrk/"))
   :bind
   ("C-r" . 'counsel-projectile-ag)
   ("C-x p" . 'counsel-projectile-switch-project)
   ("C-x C-b" . 'counsel-switch-buffer)
   ("C-x b" . 'counsel-projectile-switch-to-buffer)
   ("C-x f" . 'counsel-projectile-find-file)
-  ("C-x C-f" . 'counsel-find-file))
+  ("C-x C-f" . 'counsel-find-file)
+  (:map projectile-mode-map
+        ("C-x i" . 'counsel-imenu)))
 
 (defun my/ex-gen-migration (migration-name)
   (interactive "sMigration name: ")
@@ -418,101 +402,75 @@
 
 (use-package elixir-mode
   :ensure t
-  :config
-  (add-hook 'elixir-format-hook
-            (lambda ()
-              (let ((args (list "--dot-formatter"
-                                (concat (projectile-project-root)
-                                        ".formatter.exs"))))
-                (if (projectile-project-p)
-                    (setq elixir-format-arguments args)))))
-  ;; (format-all-mode)
-  ;; (add-hook 'elixir-mode-hook
-  ;;           (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
-  (add-hook 'elixir-mode
-            (lambda ()
-              (alchemist-mode-hook)
-              (dumb-jump-mode)))
-  (define-key elixir-mode-map (kbd "C-c a f c v") 'my/ex-find-controller-for-view)
-  (define-key elixir-mode-map (kbd "C-c a f v c") 'my/ex-find-view-for-controller)
-  (define-key elixir-mode-map (kbd "C-c a f c s") 'my/ex-find-controller-for-swagger)
-  (define-key elixir-mode-map (kbd "C-c a f s c") 'my/ex-find-swagger-for-controller)
-)
+  :hook
+  (elixir-mode . (lambda ()
+                   (format-all-mode)
+                   (alchemist-mode-hook)
+                   (dumb-jump-mode)))
+  :bind
+  (:map elixir-mode-map
+        ("C-c a f c v" . 'my/ex-find-controller-for-view)
+        ("C-c a f v c" . 'my/ex-find-view-for-controller)
+        ("C-c a f c s" . 'my/ex-find-controller-for-swagger)
+        ("C-c a f s c" . 'my/ex-find-swagger-for-controller)))
 
 (use-package alchemist
   :ensure t
-  ;; :config
-  ;; Use a different keybinding prefix than C-c a; default: (kbd "C-c a")
-  ;; (setq alchemist-key-command-prefix (kbd "C-c ,"))
+  ;; :bind-keymap
+  ;; ("C-c ," . alchemist-key-command-prefix)
   )
 
 (use-package ruby-mode
   :ensure t
   :config
-  (add-hook 'ruby-mode
-            (lambda ()
-              (company-mode 1))))
+  :hook (ruby-mode . company-mode))
 
 (use-package elisp-mode
-  :config
-  (setq lisp-body-indent 2)
-  (add-hook 'emacs-lisp-mode
-            (lambda ()
-              (set (make-local-variable 'lisp-indent-function)
-                   'common-lisp-indent-function)
-              (put 'lambda 'lisp-indent-function 'defun)
-              (put 'while 'lisp-indent-function 1)
-              (put 'if 'lisp-indent-function 1))))
+  :custom (lisp-body-indent 2)
+  :hook
+  (emacs-lisp-mode
+   . (lambda ()
+       (set (make-local-variable 'lisp-indent-function)
+            'common-lisp-indent-function)
+       (put 'lambda 'lisp-indent-function 'defun)
+       (put 'while 'lisp-indent-function 1)
+       (put 'if 'lisp-indent-function 1))))
 
 (use-package typescript-mode
   :ensure t
-  :config
-  (add-hook 'typescript-mode
-            (lambda ()
-              (compilation-minor-mode)))
-  (put 'downcase-region 'disabled nil))
+  :config (put 'downcase-region 'disabled nil)
+  :hook (typescript-mode . compilation-minor-mode))
 
 (use-package cc-mode
   :ensure t
-  :config
-  (setq-default c-default-style "k&r"
-                c-basic-offset 2
-                indent-tabs-mode nil)
-  (add-hook 'c-mode-common-hook
-            (lambda ()
-              (c-toggle-auto-state 1))))
+  :custom
+  (c-default-style "k&r")
+  (c-basic-offset 2)
+  (indent-tabs-mode nil)
+  :hook (c-mode-common-hook . c-toggle-auto-state))
 
 (use-package python-mode
   :ensure t
-  :config
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (run-python)
-              (require 'jedi)
-              (setq jedi:complete-on-dot 1)
-              (jedi:setup))))
+  :hook
+  (python-mode
+   . (lambda ()
+       (run-python)
+       (require 'jedi)
+       (setq jedi:complete-on-dot 1)
+       (jedi:setup))))
 
 (use-package ispell
   :ensure t
-  :config
-  (setq ispell-program-name "hunspell")
-  (setq ispell-local-dictionary "en_US"))
+  :custom
+  (ispell-program-name "hunspell")
+  (ispell-local-dictionary "en_US"))
 
 (use-package js
   :ensure t
-  :config
-  (setq js-indent-level 2))
-
-(defun my/sh-mode-indentation ()
-  (interactive)
-  (setq sh-basic-offset 2
-        sh-indentation 2))
+  :custom (js-indent-level 2))
 
 (use-package sh-script
   :ensure t
-  :config
-  (add-hook 'sh-mode-hook 'my/sh-mode-indentation))
-
-;;
-;; All configuration is broken apart into those files.
-;;
+  :custom
+  (sh-basic-offset 2)
+  (sh-indentation 2))
