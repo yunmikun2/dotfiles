@@ -22,6 +22,10 @@
 (eval-when-compile
   (require 'use-package))
 
+(defun my/open-notes ()
+  (interactive)
+  (find-file "~/notes.org"))
+
 (defun my/word-wrap ()
   (interactive)
   (visual-line-mode t))
@@ -94,7 +98,9 @@
                            (region-end))
     (funcall-interactively 'comment-line 1)))
 
-(put 'use-package 'lisp-indent-function 1)
+(defun my/projectile-find-file-for (project-file)
+  (find-file project-file)
+  (funcall-interactively 'counsel-projectile-find-file))
 
 (use-package use-package-core
   :custom (use-package-enable-imenu-support t))
@@ -133,17 +139,20 @@
   (scroll-bar-mode -1)
   (linum-mode 1)
   (column-number-mode 1)
-  (my/set-system-font "Iosevka Light-12")
-  (put 'narrow-to-page 'disabled nil)
-  (put 'narrow-to-region 'disabled nil)
-  (put 'scroll-left 'disabled nil)
   (delete-selection-mode 1)
-  ;; I don't know what it is.
-  (put 'upcase-region 'disabled nil)
+  (my/set-system-font "Iosevka Light-12")
+  (mapcar (lambda (x) (put x 'disabled nil))
+          '(narrow-to-page
+            narrow-to-region
+            scroll-left
+            downcase-region
+            upcase-region))
+  (defalias 'yes-or-no-p 'y-or-n-p)
   :custom
   (inhibit-startup-screen t)
   (ring-bell-function 'ignore)
   (backup-directory-alist '((".*" . "~/.emacs.d/backups")) "Backups")
+  ;; (auto-save-file-name-transforms '((".*" . "~/.emacs.d/backups")) "Hash-trash")
   (cursor-type 'bar)
   (frame-title-format '("Emacs: %f"))
   (show-trailing-whitespace t)
@@ -152,7 +161,8 @@
   ("C-x k" . 'kill-current-buffer)
   ("C-c z" . 'my/zoom-font)
   ("C-x n f" . 'fold-this)
-  ("C-x n u" . 'fold-this-unfold-at-point))
+  ("C-x n u" . 'fold-this-unfold-at-point)
+  ("C-c m n" . 'my/open-notes))
 
 (use-package string-inflection
   :ensure t
@@ -162,25 +172,43 @@
   :ensure t
   :custom (org-src-fontify-natively t)
   :custom-face
-  (org-level-1 (nil ((:height 150))))
-  (org-level-2 (nil ((:height 140))))
-  (org-level-3 (nil ((:height 130))))
-  (org-level-4 (nil ((:height 125))))
-  (org-level-5 (nil ((:height 120))))
-  (org-level-6 (nil ((:height 120)))))
+  (org-level-1 ((nil (:height 150))))
+  (org-level-2 ((nil (:height 140))))
+  (org-level-3 ((nil (:height 130))))
+  (org-level-4 ((nil (:height 125))))
+  (org-level-5 ((nil (:height 120))))
+  (org-level-6 ((nil (:height 120))))
+  (org-block ((nil (:background "#FFF"))))
+  ;; Why doesn't it work?
+  :config (set-face-font 'org-default "Roboto"))
+
+(use-package org-bullets
+  :ensure t
+  :hook (org-mode . org-bullets-mode))
 
 (use-package markdown-mode
   :ensure t
+  :custom
+  (markdown-command "/usr/bin/pandoc")
   :custom-face
-  (markdown-header-face-1 (nil ((:height 150))))
-  (markdown-header-face-2 (nil ((:height 140))))
-  (markdown-header-face-3 (nil ((:height 130))))
-  (markdown-header-face-4 (nil ((:height 125))))
-  (markdown-header-face-5 (nil ((:height 120))))
-  (markdown-header-face-6 (nil ((:height 120))))
+  (markdown-header-face-1 ((nil (:height 150))))
+  (markdown-header-face-2 ((nil (:height 140))))
+  (markdown-header-face-3 ((nil (:height 130))))
+  (markdown-header-face-4 ((nil (:height 125))))
+  (markdown-header-face-5 ((nil (:height 120))))
+  (markdown-header-face-6 ((nil (:height 120))))
+  :config
+  (set-face-font 'markdown-inline-code-face "Iosevka Light")
+  (set-face-font 'markdown-pre-face "Iosevka Light")
   :bind
   (:map markdown-mode-map
-        ("C-c C-c v" . 'my/switch-markdown-mode)))
+        ("C-c C-c v" . 'my/switch-markdown-mode))
+  :hook
+  (markdown-mode . (lambda () (my/set-buffer-font "Roboto" 12))))
+
+(use-package auto-fill-mode
+  :custom (fill-collumn 80)
+  :hook text-mode markdown-mode org-mode)
 
 (use-package smartparens
   :ensure t
@@ -239,6 +267,20 @@
   :bind
   ("M-o" . 'ace-window)
   ("C-x o" . 'ace-window))
+
+(use-package which-key
+  :ensure t
+  :custom
+  (which-key-show-early-on-C-h t)
+  (which-key-idle-delay 1)
+  (which-key-idle-secondary-delay 0.05)
+  :config
+  (mapcar (lambda (key) (add-to-list 'which-key-replacement-alist key))
+          '((("TAB" . nil) . ("↹" . nil))
+            (("RET" . nil) . ("⏎" . nil))
+            (("DEL" . nil) . ("⇤" . nil))
+            (("SPC" . nil) . ("␣" . nil))))
+  (which-key-mode))
 
 (use-package neotree
   :ensure t
@@ -425,13 +467,25 @@
                                        "swagger"
                                        "controller"))
 
+(defun my/prog/elixir-format-hook ()
+  (if (projectile-project-p)
+      (setq elixir-format-arguments
+            (list "--dot-formatter"
+                  (concat (locate-dominating-file buffer-file-name
+                                                  ".formatter.exs")
+                          ".formatter.exs")))
+    (setq elixir-format-arguments nil)))
+
+(defun my/prog/elixir-mode-hook ()
+  ;; (add-hook 'before-save-hook 'elixir-format nil t)
+  (alchemist-mode-hook)
+  (dumb-jump-mode))
+
 (use-package elixir-mode
   :ensure t
   :hook
-  (elixir-mode . (lambda ()
-                   (add-hook 'before-save-hook 'elixir-format nil t)
-                   (alchemist-mode-hook)
-                   (dumb-jump-mode)))
+  (elixir-format . my/prog/elixir-format-hook)
+  (elixir-mode . my/prog/elixir-mode-hook)
   :bind
   (:map elixir-mode-map
         ("C-c a f c v" . 'my/ex-find-controller-for-view)
@@ -451,21 +505,21 @@
   :config
   :hook (ruby-mode . company-mode))
 
+(defun my/prog/emacs-lisp-mode-hook ()
+  (set (make-local-variable 'lisp-indent-function)
+       'common-lisp-indent-function)
+  (put 'lambda 'lisp-indent-function 'defun)
+  (put 'while 'lisp-indent-function 1)
+  (put 'if 'lisp-indent-function 1)
+  (put 'use-package 'lisp-indent-function 1))
+
 (use-package elisp-mode
   :custom (lisp-body-indent 2)
-  :hook
-  (emacs-lisp-mode
-   . (lambda ()
-       (set (make-local-variable 'lisp-indent-function)
-            'common-lisp-indent-function)
-       (put 'lambda 'lisp-indent-function 'defun)
-       (put 'while 'lisp-indent-function 1)
-       (put 'if 'lisp-indent-function 1)))
+  :hook (emacs-lisp-mode . my/prog/emacs-lisp-mode-hook)
   :bind ("C-c e e" . 'eval-region))
 
 (use-package typescript-mode
   :ensure t
-  :config (put 'downcase-region 'disabled nil)
   :hook (typescript-mode . compilation-minor-mode))
 
 (use-package cc-mode
@@ -476,15 +530,15 @@
   (indent-tabs-mode nil)
   :hook (c-mode-common-hook . c-toggle-auto-state))
 
+(defun my/prog/python-mode-hook ()
+  (run-python)
+  (require 'jedi)
+  (setq jedi:complete-on-dot 1)
+  (jedi:setup))
+
 (use-package python-mode
   :ensure t
-  :hook
-  (python-mode
-   . (lambda ()
-       (run-python)
-       (require 'jedi)
-       (setq jedi:complete-on-dot 1)
-       (jedi:setup))))
+  :hook (python-mode . my/prog/python-mode-hook))
 
 (use-package ispell
   :ensure t
