@@ -136,7 +136,6 @@
   :init
   (tool-bar-mode -1)
   (menu-bar-mode -1)
-  (scroll-bar-mode -1)
   (linum-mode 1)
   (column-number-mode 1)
   (delete-selection-mode 1)
@@ -148,6 +147,7 @@
             downcase-region
             upcase-region))
   (defalias 'yes-or-no-p 'y-or-n-p)
+  :hook (after-init . (lambda () (scroll-bar-mode -1)))
   :custom
   (inhibit-startup-screen t)
   (ring-bell-function 'ignore)
@@ -214,7 +214,7 @@
   :ensure t
   :config
   (require 'smartparens-config)
-  (smartparens-global-strict-mode +1)
+  (smartparens-global-mode +1)
   :custom-face (sp-pair-overlay-face (nil ((:background "#EEE")))))
 
 (use-package smooth-scroll
@@ -467,6 +467,11 @@
                                        "swagger"
                                        "controller"))
 
+(use-package phoenix-router-imenu-mode
+  :quelpa
+  (phoenix-router-imenu-mode :fetcher github
+                             :repo "yunmikun2/phoenix-router-imenu-mode"))
+
 (defun my/prog/elixir-format-hook ()
   (if (projectile-project-p)
       (setq elixir-format-arguments
@@ -478,6 +483,8 @@
 
 (defun my/prog/elixir-mode-hook ()
   ;; (add-hook 'before-save-hook 'elixir-format nil t)
+  (when (string-equal (buffer-name (current-buffer)) "router.ex")
+    (phoenix-router-imenu-mode +1))
   (alchemist-mode-hook)
   (dumb-jump-mode))
 
@@ -511,7 +518,8 @@
   (put 'lambda 'lisp-indent-function 'defun)
   (put 'while 'lisp-indent-function 1)
   (put 'if 'lisp-indent-function 1)
-  (put 'use-package 'lisp-indent-function 1))
+  (put 'use-package 'lisp-indent-function 1)
+  (put 'define-derived-mode 'lisp-indent-function 1))
 
 (use-package elisp-mode
   :custom (lisp-body-indent 2)
