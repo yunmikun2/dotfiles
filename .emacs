@@ -147,6 +147,7 @@
             downcase-region
             upcase-region))
   (defalias 'yes-or-no-p 'y-or-n-p)
+  ;; (add-to-list 'load-path "~/.emacs.d/mlibs/")
   :hook (after-init . (lambda () (scroll-bar-mode -1)))
   :custom
   (inhibit-startup-screen t)
@@ -280,7 +281,8 @@
             (("RET" . nil) . ("⏎" . nil))
             (("DEL" . nil) . ("⇤" . nil))
             (("SPC" . nil) . ("␣" . nil))))
-  (which-key-mode))
+  (which-key-mode)
+  :bind ("C-h <f5>" . 'which-key-C-h-dispatch))
 
 (use-package neotree
   :ensure t
@@ -314,7 +316,11 @@
   ("C-c g s" . git-gutter:popup-hunk)
   ("C-c g m" . git-gutter:mark-hunk))
 
-(use-package magit :ensure t)
+(use-package magit
+  :ensure t
+  :bind
+  (:map magit-file-mode-map
+        ("C-c g g" . 'magit-dispatch)))
 
 (use-package ranger
   :ensure t
@@ -467,10 +473,11 @@
                                        "swagger"
                                        "controller"))
 
-(use-package phoenix-router-imenu-mode
+(use-package chevengur-imenu-mode
   :quelpa
-  (phoenix-router-imenu-mode :fetcher github
-                             :repo "yunmikun2/phoenix-router-imenu-mode"))
+  (chevengur-imenu-mode :fetcher github
+                        :repo "yunmikun2/chevengur-imenu-mode")
+  :hook elixir-mode)
 
 (defun my/prog/elixir-format-hook ()
   (if (projectile-project-p)
@@ -481,18 +488,15 @@
                           ".formatter.exs")))
     (setq elixir-format-arguments nil)))
 
-(defun my/prog/elixir-mode-hook ()
-  ;; (add-hook 'before-save-hook 'elixir-format nil t)
-  (when (string-equal (buffer-name (current-buffer)) "router.ex")
-    (phoenix-router-imenu-mode +1))
-  (alchemist-mode-hook)
-  (dumb-jump-mode))
+(use-package alchemist
+  :ensure t
+  :hook (elixir-mode . alchemist-mode))
 
 (use-package elixir-mode
   :ensure t
   :hook
   (elixir-format . my/prog/elixir-format-hook)
-  (elixir-mode . my/prog/elixir-mode-hook)
+  (elixir-mode . dumb-jump-mode)
   :bind
   (:map elixir-mode-map
         ("C-c a f c v" . 'my/ex-find-controller-for-view)
@@ -501,16 +505,91 @@
         ("C-c a f s c" . 'my/ex-find-swagger-for-controller)
         ("C-c a d" . 'elixir-mode-open-docs-stable)))
 
-(use-package alchemist
+(use-package pug-mode
   :ensure t
-  ;; :bind-keymap
-  ;; ("C-c ," . alchemist-key-command-prefix)
-  )
+  :custom (pug-tab-width 2))
 
 (use-package ruby-mode
   :ensure t
   :config
   :hook (ruby-mode . company-mode))
+
+;; (use-package inf-ruby
+;;  :hook
+;;  ;; automatically switch from common ruby compilation modes
+;;  ;; to interact with a debugger
+;;  (compilation-filter . inf-ruby-auto-enter)
+;;  ;; required to use binding.pry or byebug
+;;  (after-init . inf-ruby-switch-setup))
+
+;; (use-package robe
+;;  :after (company)
+;;  :hook
+;;  (ruby-mode . robe-mode)
+;;  :config
+;;  (add-to-list 'company-backends 'company-robe)
+;;  :delight "robe")
+
+;; (use-package rubocop
+;;  :after (robe)
+;;  :hook
+;;  (ruby-mode . rubocop-mode)
+;;  :delight "rcop")
+
+;; (use-package bundler
+;;  :after general
+;;  :config
+;;  (nmap 'ruby-mode-map
+;;    :prefix my/leader
+;;    "b i" 'bundle-install
+;;    "b c" 'bundle-console
+;;    "b o" 'bundle-outdated
+;;    "b u" 'bundle-update
+;;    "b e" 'bundle-exec))
+
+;; (use-package rbenv
+;;  :commands
+;;  (global-rbenv-mode)
+;;  :preface
+;;  (defun my/rbenv/modeline (current-ruby)
+;;    (append
+;;     '(" ruby [")
+;;     (list (propertize current-ruby 'face 'rbenv-active-ruby-face))
+;;     '("]")))
+;;  :hook
+;;  (ruby-mode . rbenv-use-corresponding)
+;;  :init
+;;  (setq rbenv-modeline-function 'my/rbenv/modeline)
+;;  :config
+;;  (global-rbenv-mode)
+;;  (nmap 'ruby-mode-map
+;;    :prefix "C-c R"
+;;    "c" 'rbenv-use-corresponding
+;;    "u" 'rbenv-use))
+
+;; (use-package rake
+;;  :after (general projectile)
+;;  :init
+;;  (setq rake-completion-system projectile-completion-system)
+;;  :config
+;;  (nmap 'ruby-mode-map
+;;    :prefix my/leader
+;;    "r" 'rake))
+
+;; (use-package rspec-mode)
+
+;; (use-package projectile-rails
+;;  :after projectile
+;;  :commands
+;;  (projectile-rails-global-mode)
+;;  :init
+;;  (setq
+;;   projectile-rails-vanilla-command "bin/rails"
+;;   projectile-rails-spring-command "bin/spring"
+;;   projectile-rails-zeus-command "bin/zeus")
+;;  :config
+;;  (projectile-rails-global-mode)
+;;  :diminish)
 
 (defun my/prog/emacs-lisp-mode-hook ()
   (set (make-local-variable 'lisp-indent-function)
@@ -538,15 +617,13 @@
   (indent-tabs-mode nil)
   :hook (c-mode-common-hook . c-toggle-auto-state))
 
-(defun my/prog/python-mode-hook ()
-  (run-python)
-  (require 'jedi)
-  (setq jedi:complete-on-dot 1)
-  (jedi:setup))
+(use-package jedi
+  :ensure t
+  :custom (jedi:complete-on-dot 1))
 
 (use-package python-mode
   :ensure t
-  :hook (python-mode . my/prog/python-mode-hook))
+  :hook (python-mode . jedi:ac-setup))
 
 (use-package ispell
   :ensure t
