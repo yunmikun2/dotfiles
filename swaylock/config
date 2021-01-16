@@ -1,0 +1,129 @@
+######################################################################
+# Behaviour.
+######################################################################
+
+# Display the current xkb layout while typing.
+show-keyboard-layout
+
+# Show the current Caps Lock state also on the indicator.
+indicator-caps-lock
+
+# Disable the Caps Lock text.
+disable-caps-lock-text
+
+######################################################################
+# Wallpaper.
+######################################################################
+
+# Display the given image, optionally only on the given output. Use -c
+# to set a background color. If the path potentially contains a ':',
+# prefix it with another.
+image=~/i/wp.png
+
+# Image scaling mode: stretch, fill, fit, center, tile, solid_color.
+# Use solid_color to display only the background color, even if a
+# background image is specified.
+scaling=fill
+
+######################################################################
+# Colors.
+######################################################################
+
+# Highlight.
+#
+
+# Sets the color of the key press highlight segments.
+key-hl-color=#407ee7
+
+# Sets the color of the key press highlight segments when Caps Lock is active.
+caps-lock-key-hl-color=#407ee7
+
+# Sets the color of backspace highlight segments.
+bs-hl-color=#f22c40
+
+# Sets the color of backspace highlight segments when Caps Lock is active.
+caps-lock-bs-hl-color=#f22c40
+
+# Ring.
+#
+
+# Sets the color of the ring of the indicator when typing or idle.
+ring-color=#ffffff
+
+# Sets the color of the ring of the indicator when cleared.
+ring-clear-color=#ffffff
+
+# Sets the color of the ring of the indicator when Caps Lock is active.
+ring-caps-lock-color=#ffffff
+
+# Sets the color of the ring of the indicator when verifying.
+ring-ver-color=#407ee7
+
+# Sets the color of the ring of the indicator when invalid.
+ring-wrong-color=#f22c40
+
+# Inside.
+#
+
+# Sets the color of the inside of the indicator.
+inside-color=#ffffffcc
+
+# Sets the color of the inside of the indicator when cleared.
+inside-clear-color=#f22c40cc
+
+# Sets the color of the inside of the indicator when Caps Lock is active.
+inside-caps-lock-color=#f22c40cc
+
+# Sets the color of the inside of the indicator when verifying.
+inside-ver-color=#407ee7cc
+
+# Sets the color of the inside of the indicator when invalid.
+inside-wrong-color=#f22c40cc
+
+# Layout.
+#
+
+# Sets the background color of the box containing the layout text.
+# layout-bg-color <rrggbb[aa]>
+
+# Sets the color of the border of the box containing the layout text.
+# layout-border-color <rrggbb[aa]>
+
+# Sets the color of the layout text.
+# layout-text-color <rrggbb[aa]>
+
+# Line.
+#
+
+# Sets the color of the line between the inside and ring.
+# line-color=#407ee7
+
+# Sets the color of the line between the inside and ring when cleared.
+# line-clear-color <rrggbb[aa]>
+
+# Sets the color of the line between the inside and ring when Caps Lock is active.
+# line-caps-lock-color <rrggbb[aa]>
+
+# Sets the color of the line between the inside and ring when verifying.
+# line-ver-color <rrggbb[aa]>
+
+# Sets the color of the line between the inside and ring when invalid.
+# line-wrong-color <rrggbb[aa]>
+
+# Text.
+#
+
+# Sets the color of the text.
+# text-color <rrggbb[aa]>
+
+# Sets the color of the text when cleared.
+# text-clear-color <rrggbb[aa]>
+
+# Sets the color of the text when Caps Lock is active.
+# text-caps-lock-color <rrggbb[aa]>
+
+# Sets the color of the text when verifying.
+# text-ver-color <rrggbb[aa]>
+
+# Sets the color of the text when invalid.
+# text-wrong-color <rrggbb[aa]>

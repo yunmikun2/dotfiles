@@ -1,0 +1,32 @@
+# Take a look at the mako manpage with the command:
+#   man 5 mako
+# To view all configuration options.
+
+font=Noto 12
+format=<b>%s</b> - %a\n%b
+sort=-time
+layer=overlay
+anchor=bottom-right
+background-color=#f7f7f799
+text-color=#1b1918
+width=300
+height=110
+margin=5
+padding=0,5,10
+border-size=3
+border-color=#1b1918
+max-icon-size=64
+default-timeout=5000
+
+[urgency=low]
+border-color=#1b1918
+
+[urgency=normal]
+border-color=#407ee7
+
+[urgency=high]
+border-color=#f22c40
+default-timeout=0
+
+[app-name="Telegram Desktop"]
+group-by=app-name

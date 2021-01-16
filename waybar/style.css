@@ -1,0 +1,139 @@
+* {
+  border: none;
+  border-radius: 0;
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: Noto;
+  /* font-family: 'Product Sans', 'Font Awesome 5 Free Solid', Source Code Pro, Roboto, sans-serif; */
+  font-size: 14px;
+  min-height: 0;
+  background-color: #f7f7f7;
+}
+
+window#waybar {
+  color: #1b1918;
+}
+
+#clock {
+  font-weight: bold;
+  /* color: #ffffff;
+     background-color: #407ee7; */
+}
+
+#clock.tooltip {
+  color: #1b1918;
+  background-color: #1b1918;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  color: #1B1918;
+}
+
+#workspaces button:hover {
+  border-bottom: 2px solid #407ee7;
+}
+
+#workspaces button.focused {
+  border-bottom: 2px solid #1b1918;
+}
+
+#workspaces button.urgent {
+  background-color: #f22c40;
+}
+
+#mode {
+  background-color: #f22c40;
+}
+
+#clock,
+#battery,
+#backlight,
+#pulseaudio,
+#network,
+#tray,
+#mode {
+  padding: 0 2px;
+  margin: 0 2px;
+}
+
+#battery,
+#pulseaudio,
+#backlight,
+#network,
+#tray,
+#mode {
+  color: #1B1918;
+}
+
+#network.disconnected {
+  color: #f53c3c;
+}
+
+#window,
+#workspaces {
+  margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#battery,
+#pulseaudio,
+#backlight,
+#network
+{
+  font-family: 'Product Sans', 'Font Awesome 5 Free Solid', Source Code Pro, Roboto, sans-serif;
+}
+
+#battery {
+  color: #1b1918;
+  background-color: #f7f7f7;
+}
+
+#battery.charging {
+  color: #26A65B;
+}
+
+@keyframes blink {
+  to {
+    background-color: #000000;
+    color: #ffffff;
+  }
+}
+
+#battery.critical:not(.charging) {
+  color: #f53c3c;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+label:focus {
+  background-color: #000000;
+}
+
+#tray {
+  /* background-color: #2980b9; */
+}
+
+#language {
+  background: #1b1918;
+  font-weight: bold;
+  color: #FFFFFF;
+  padding: 0 5px;
+  margin: 0 5px;
+  min-width: 16px;
+}
+
+#tray {
+  /* background: #407ee7; */
+}

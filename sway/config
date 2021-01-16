@@ -1,0 +1,12 @@
+# Read `man 5 sway` for a complete reference.
+
+include config.d/layout.conf
+include config.d/bindings.conf
+include config.d/colors.conf
+include config.d/iodev.conf
+
+# pcmanfm automount
+exec --no-startup-id pcmanfm -d &
+
+# Start sway session target to run systemd-enabled services.
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"

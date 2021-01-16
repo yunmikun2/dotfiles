@@ -1,0 +1,45 @@
+[options]
+font = Iosevka Light 12
+allow_bold = false
+clickable_url = true
+scrollback_lines = -1
+
+[colors]
+foreground = #1b1918
+background  = #f7f7f7
+
+# foreground_bold = #c5c8c6
+# cursor          = #c5c8c6
+
+# black
+color0  = #1b1918
+color8  = #666666
+
+# red
+color1  = #f22c40
+color9  = #ff3334
+
+# green
+color2  = #7b9726
+color10 = #9ec400
+
+# yellow
+color3  = #c38418
+color11 = #e7c547
+
+# blue
+color4  = #407ee7
+color12 = #7aa6da
+
+# magenta
+color5  = #6666ea
+color13 = #b77ee0
+
+# cyan
+color6  = #407ee7
+color14 = #54ced6
+
+# white
+color7  = #f7f7f7
+color15 = #ffffff
+
