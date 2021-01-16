@@ -6,7 +6,17 @@ PartOf=graphical-session.target
 [Service]
 Type=simple
 StandardInput=socket
-ExecStart=/usr/bin/wob
+
+ExecStart=/usr/bin/wob --border-color '#ee407ee7' \
+                       --background-color '#eef7f7f7' \
+                       --bar-color '#ee1b1918' \
+                       --border 2 \
+                       --offset 2 \
+                       --padding 2 \
+                       --height 25 \
+                       --anchor bottom \
+                       --margin 50 \
+                       --timeout 400
 
 [Install]
 WantedBy=sway-session.target
