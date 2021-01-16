@@ -1,0 +1,12 @@
+[Unit]
+Description=A lightweight overlay volume/backlight/progress/anything bar for Wayland
+Documentation=man:wob(1)
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+StandardInput=socket
+ExecStart=/usr/bin/wob
+
+[Install]
+WantedBy=sway-session.target
