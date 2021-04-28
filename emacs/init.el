@@ -1015,7 +1015,7 @@
 (use-package json-snatcher
   :ensure t)
 
-;; (load "/home/andi/.opam/default/share/emacs/site-lisp/tuareg-site-file")
+(load "~/.opam/default/share/emacs/site-lisp/tuareg-site-file")
 
 (use-package go-mode :ensure t)
 
