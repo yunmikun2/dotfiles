@@ -791,6 +791,19 @@
   ("C-c e e" . 'eval-region)
   ("C-c e r" . 'eval-print-last-sexp))
 
+(defun my-delete-trailing-whitespace-over-elisp-format-region
+    (fn &optional start end)
+  (let ((start (or start (region-beginning)))
+        (end (or end (region-end)))
+        (end-marker (make-marker)))
+    (move-marker end-marker end)
+    (funcall fn start end)
+    (delete-trailing-whitespace start end-marker)))
+
+(advice-add 'elisp-format-region
+            :around
+            #'my-delete-trailing-whitespace-over-elisp-format-region)
+
 (use-package typescript-mode
   :ensure t
   :custom
