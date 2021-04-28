@@ -175,26 +175,15 @@
 (use-package org
   :ensure t
   :custom
+  (org-adapt-indentation nil)
+  (org-edit-src-content-indentation 0)
   (org-clock-persist 'history)
   (org-src-fontify-natively t)
   (org-todo-keywords '((type "TODO" "TEST" "DONE")))
   (org-todo-keyword-faces '(("TODO" . (:foreground "#C38418" :weight bold))
                             ("TEST" . (:foreground "#C398D8" :weight bold))
                             ("DONE" . (:foreground "#335EA8" :weight bold))))
-  :custom-face
-  (org-level-1 ((nil (:height 150))))
-  (org-level-2 ((nil (:height 140))))
-  (org-level-3 ((nil (:height 130))))
-  (org-level-4 ((nil (:height 125))))
-  (org-level-5 ((nil (:height 120))))
-  (org-level-6 ((nil (:height 120))))
-  (org-block ((nil (:background "#FFF"))))
-  ;; (org-done ((nil (:foreground "#335EA8" :weight bold))))
-  ;; (org-todo ((nil (:foreground "#C38418" :weight bold))))
-  ;; (org-test ((nil (:foreground "#C398D8" :weight bold))))
-  ;; Why doesn't it work?
   :config
-  (set-face-font 'org-default "Roboto")
   (org-clock-persistence-insinuate)
   ;; Add `C-c C-, r' shortcut for begin_src restclient block insertion.
   (add-to-list 'org-structure-template-alist '("r" . "src restclient
@@ -227,22 +216,9 @@
   :ensure t
   :custom
   (markdown-command "/usr/bin/pandoc")
-  :custom-face
-  (markdown-header-face-1 ((nil (:height 150))))
-  (markdown-header-face-2 ((nil (:height 140))))
-  (markdown-header-face-3 ((nil (:height 130))))
-  (markdown-header-face-4 ((nil (:height 125))))
-  (markdown-header-face-5 ((nil (:height 120))))
-  (markdown-header-face-6 ((nil (:height 120))))
-  :config
-  (set-face-font 'markdown-inline-code-face "Iosevka Light")
-  (set-face-font 'markdown-pre-face "Iosevka Light")
   :bind
   (:map markdown-mode-map
-        ("C-c C-c v" . 'my/switch-markdown-mode))
-  ;; :hook
-  ;; (markdown-mode . (lambda () (my/set-buffer-font "Roboto" 12)))
-  )
+        ("C-c C-c v" . 'my/switch-markdown-mode)))
 
 (use-package auto-fill-mode
   :custom (fill-collumn 80)
@@ -381,12 +357,7 @@
   ("C-c g s" . git-gutter:popup-hunk)
   ("C-c g m" . git-gutter:mark-hunk))
 
-(use-package magit
-  :ensure t
-  :bind
-  ;; (:map magit-file-mode-map
-  ;;       ("C-c g g" . 'magit-dispatch))
-  )
+(use-package magit :ensure t)
 
 (use-package magit-todos
   :ensure t
