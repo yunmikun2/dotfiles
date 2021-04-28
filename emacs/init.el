@@ -585,16 +585,6 @@
   :ensure t
   :hook (elixir-mode . lsp))
 
-(defun exunit-toggle-trace ()
-  (interactive)
-  (if (eq exunit-mix-test-default-options '())
-      (progn
-        (setq exunit-mix-test-default-options '("--trace"))
-        (message "Tracing enabled"))
-    (progn
-      (setq exunit-mix-test-default-options '())
-      (message "Tracing disabled"))))
-
 (use-package exunit
   :ensure t
   :bind
