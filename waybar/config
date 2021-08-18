@@ -1,113 +1,133 @@
 {
-    "height": 24,
-    // Choose the order of the modules
-    "modules-left": ["sway/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["sway/mode", "sway/workspaces", "custom/media", "sway/language", "battery", "network", "backlight", "pulseaudio", "pulseaudio#mic", "pulseaudio#bluetooth", "tray"],
-    // Modules configuration
-    "sway/window": {
-        "tooltip": false
-    },
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{icon}",
-        "format-icons": {
-            "1": "一",
-            "2": "二",
-            "3": "三",
-            "4": "四",
-            "5": "五",
-            "6": "六",
-            "7": "七",
-            "8": "八",
-            "9": "九",
-            "10": "十"
-        }
-    },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>",
-        "tooltip": false
-    },
-    "tray": {
-        "icon-size": 20,
-        "spacing": 10
-    },
-    "clock": {
-        "timezone": "Europe/Moscow",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%a,  %H:%M}",
-        "format-alt": "{:%Y-%m-%d %H:%M}"
-    },
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}",
-        "format-alt": "{capacity}% {time} {icon}",
-        "tooltip": false,
-        "format-icons": ["", "", "", "", ""]
-    },
-    "backlight": {
-        "format": "",
-        "format-alt": "{percent}% "
-        // "format-icons": ["", "", "", "", ""]
-    },
-    "pulseaudio": {
-        "scroll-step": 0, // %, can be a float
-        "format": "{icon}",
-        "format-bluetooth": "{icon}",
-        "format-bluetooth-muted": "",
-        "format-muted": "",
-        // "format-source": "{volume}% ",
-        "format-source": "",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": ["", "", "", ""],
-            "hands-free": "",
-            "headphone": ["", "", "", ""],
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", "", ""]
-        },
-        "tooltip": false,
-        "on-click": "pavucontrol",
-        "on-click-right": "blueman-manager"
-    },
-    "pulseaudio#bluetooth": {
-        "scroll-step": 0, // %, can be a float
-        "format": "",
-        "format-bluetooth": "",
-        "format-bluetooth-muted": "",
-        "format-muted": "",
-        "format-source": "",
-        "format-source-muted": "",
-        "on-click": "blueman-manager",
-        "tooltip": false
-    },
-    "pulseaudio#mic": {
-        "scroll-step": 0, // %, can be a float
-        "format": "{format_source}",
-        "format-bluetooth": "{format_source}",
-        "format-bluetooth-muted": "{format_source}",
-        "format-muted": "{format_source}",
-        "format-source": "",
-        "format-source-muted": "",
-        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-        "tooltip": false
-    },
-    "network": {
-        "format-wifi": "",
-        "format-ethernet": "",
-        "format-linked": "",
-        "format-disconnected": "⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr} {essid}",
-        "tooltip": false
-    },
-    "sway/language": {
-        "tooltip": false
+  "height": 24,
+  // Choose the order of the modules
+  "modules-left": ["sway/window"],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "sway/mode",
+    "sway/workspaces",
+    "custom/media",
+    "sway/language",
+    "battery",
+    "network",
+    "backlight",
+    "pulseaudio",
+    "pulseaudio#mic",
+    "pulseaudio#bluetooth",
+    "tray",
+    "idle_inhibitor"
+  ],
+  // Modules configuration
+  "sway/window": {
+    "tooltip": false
+  },
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十"
     }
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 20,
+    "spacing": 10
+  },
+  "clock": {
+    "timezone": "Europe/Moscow",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%a,  %H:%M}",
+    "format-alt": "{:%Y-%m-%d %H:%M}"
+  },
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}",
+    "format-alt": "{capacity}% {time} {icon}",
+    "tooltip": false,
+    "format-icons": ["", "", "", "", ""]
+  },
+  "backlight": {
+    "format": "",
+    "format-alt": "{percent}% "
+    // "format-icons": ["", "", "", "", ""]
+  },
+  "pulseaudio": {
+    "scroll-step": 0, // %, can be a float
+    "format": "{icon}",
+    "format-bluetooth": "{icon}",
+    "format-bluetooth-muted": "",
+    "format-muted": "",
+    // "format-source": "{volume}% ",
+    "format-source": "",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": ["", "", "", ""],
+      "hands-free": "",
+      "headphone": ["", "", "", ""],
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", "", ""]
+    },
+    "tooltip": false,
+    "on-click": "pavucontrol",
+    "on-click-right": "blueman-manager"
+  },
+  "pulseaudio#bluetooth": {
+    "scroll-step": 0, // %, can be a float
+    "format": "",
+    "format-bluetooth": "",
+    "format-bluetooth-muted": "",
+    "format-muted": "",
+    "format-source": "",
+    "format-source-muted": "",
+    "on-click": "blueman-manager",
+    "tooltip": false
+  },
+  "pulseaudio#mic": {
+    "scroll-step": 0, // %, can be a float
+    "format": "{format_source}",
+    "format-bluetooth": "{format_source}",
+    "format-bluetooth-muted": "{format_source}",
+    "format-muted": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "tooltip": false
+  },
+  "network": {
+    "format-wifi": "",
+    "format-ethernet": "",
+    "format-linked": "",
+    "format-disconnected": "⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr} {essid}",
+    "tooltip": false
+  },
+  "sway/language": {
+    "tooltip": false
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  }
 }
