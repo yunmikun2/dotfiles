@@ -1074,6 +1074,15 @@
 
 (load "~/.opam/default/share/emacs/site-lisp/tuareg-site-file")
 
+(use-package tuareg
+  :config
+  (setq exec-path (append '("/home/andi/.opam/4.11.1/bin") exec-path)))
+
+(use-package ocamlformat
+  :ensure t
+  :custom (ocamlformat-enable 'enable-outside-detected-project)
+  :hook (before-save . ocamlformat-before-save))
+
 (use-package go-mode :ensure t)
 
 (use-package sml-mode
