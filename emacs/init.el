@@ -422,14 +422,14 @@
 
 (use-package ranger
   :ensure t
-  :bind ("C-x C-d" . 'deer)
   :custom
   (ranger-cleanup-eagerly t)
   (ranger-show-hidden t)
   :custom-face
   (hl-line ((nil (:background "#FFF"))))
   :config
-  (ranger-override-dired-mode t))
+  (ranger-override-dired-mode t)
+  :bind ("C-x C-d" . 'deer))
 
 (defun my/make-cursor-a-bar ()
   (message "kek")
