@@ -1167,6 +1167,11 @@
 ;;   (pkgbuild-mode :fetcher git
 ;;                  :branch "master"
 ;;                  :url "https://gitlab.com/stefanhusmann/pkgbuild-mode.git"))
+
+(use-package haskell-mode
+  :ensure t
+  :hook (haskell-mode . subword-mode))
+
 (use-package markdown-toc
   :ensure t
   :bind
