@@ -183,6 +183,12 @@
   :ensure t
   :bind ("C-c i" . 'string-inflection-cycle))
 
+(use-package whitespace
+  :ensure t
+  :defer t
+  :custom-face
+  (whitespace-space ((t (:background nil :foreground "lightgray")))))
+
 (use-package org
   :ensure t
   :defer t
