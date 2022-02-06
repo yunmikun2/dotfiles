@@ -200,7 +200,13 @@
   (org-todo-keywords '((type "TODO" "TEST" "DONE")))
   (org-todo-keyword-faces '(("TODO" . (:foreground "#C38418" :weight bold))
                             ("TEST" . (:foreground "#C398D8" :weight bold))
-                            ("DONE" . (:foreground "#335EA8" :weight bold))))
+                            ("DONE" . (:foreground "#335EA8" :weight bold))
+                            ;; List settings.
+                            ("PTW" . (:foreground "#C38418" :weight bold))
+                            ("CUR" . (:foreground "#C398D8" :weight bold))
+                            ("HLD" . (:foreground "#C398D8" :weight bold))
+                            ("CMP" . (:foreground "#335EA8" :weight bold))
+                            ("DRP" . (:foreground "#335EA8" :weight bold))))
   :config
   (org-clock-persistence-insinuate)
   ;; Add `C-c C-, r' shortcut for begin_src restclient block insertion.
