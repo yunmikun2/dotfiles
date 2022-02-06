@@ -18,7 +18,7 @@ disable-caps-lock-text
 # Display the given image, optionally only on the given output. Use -c
 # to set a background color. If the path potentially contains a ':',
 # prefix it with another.
-image=~/i/wp.png
+image=~/i/winter-tree-bench-locked.png
 
 # Image scaling mode: stretch, fill, fit, center, tile, solid_color.
 # Use solid_color to display only the background color, even if a
