@@ -223,16 +223,18 @@
 (use-package ob-restclient :ensure t)
 
 (use-package babel
-  :ensure t
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((elixir . t)
      (restclient . t)
      (shell . t)
-     (emacs-lisp . nil)
+     (emacs-lisp . t)
+     (scheme . t)
      (python . t)
-     (sql . t))))
+     (sql . t)
+     (haskell . t)
+     (ocaml . t))))
 
 (use-package org-bullets
   :ensure t
