@@ -685,6 +685,7 @@
         ("C-c t t" . 'exunit-toggle-trace)
         ("C-c c c" . 'ex-compile)
         ("C-c c l" . 'ex-credo)
+        ("C-c c d" . 'ex-dialyzer)
         ("C-c c f" . 'ex-format)))
 
 ;; (use-package iex-mode :load-path "~/.emacs.d/mlibs/")
@@ -1006,6 +1007,12 @@
   (interactive)
   (let ((default-directory (projectile-project-root)))
     (exunit-do-compile "mix compile --warnings-as-errors")))
+
+(defun ex-dialyzer ()
+  "Run mix dialyzer on the current projectile elixir project"
+  (interactive)
+  (let ((default-directory (projectile-project-root)))
+    (exunit-do-compile "mix dialyzer")))
 
 (use-package smerge-mode
   :defer t
