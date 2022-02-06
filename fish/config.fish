@@ -1,4 +1,5 @@
 alias selfcam='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed'
+alias fakecam='mpv av://v4l2:/dev/video20 --profile=low-latency --untimed'
 alias htpasswd='openssl passwd -apr1'
 
 . /opt/asdf-vm/asdf.fish
