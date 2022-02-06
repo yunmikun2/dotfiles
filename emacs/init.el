@@ -621,19 +621,10 @@
 ;; (use-package alchemist
 ;;   :ensure t
 ;;   :hook (elixir-mode . alchemist-mode))
-
-(use-package lsp-mode
-  :commands lsp
+(use-package eglot
   :ensure t
-  :diminish lsp-mode
-  :init
-  ;; (add-to-list 'exec-path "/usr/lib/elixir-ls/")
-  (add-to-list 'exec-path "~/.local/lib/elixir-ls/")
-  ) ; language_server.sh
-
-(use-package lsp-elixir
-  :ensure t
-  :hook (elixir-mode . lsp))
+  :config
+  (add-to-list 'eglot-server-programs '(elixir-mode . ("/usr/bin/elixir-ls"))))
 
 (use-package exunit
   :ensure t
@@ -651,6 +642,7 @@
   :ensure t
   :hook
   ;; (elixir-format . my/prog/elixir-format-hook)
+  (elixir-mode . eglot-ensure)
   (elixir-mode . dumb-jump-mode)
   (elixir-mode . subword-mode)
   (elixir-format-hook
