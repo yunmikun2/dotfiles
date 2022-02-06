@@ -1167,3 +1167,12 @@
 ;;   (pkgbuild-mode :fetcher git
 ;;                  :branch "master"
 ;;                  :url "https://gitlab.com/stefanhusmann/pkgbuild-mode.git"))
+(use-package markdown-toc
+  :ensure t
+  :bind
+  (:map markdown-toc-mode-map
+        ("C-c m ." . 'markdown-toc-follow-link-at-point)
+        ("C-c m t" . 'markdown-toc-generate-or-refresh-toc)
+        ("C-c m d" . 'markdown-toc-delete-toc)
+        ("C-c m v" . 'markdown-toc-version)))
+
