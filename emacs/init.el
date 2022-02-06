@@ -1,5 +1,9 @@
 ;;; -*- lexical-binding: t; -*-
+;;; Local Variables:
+;;; eval: (add-hook 'after-save-hook #'byte-compile-current-file nil t)
+;;; End:
 ;;; Emacs config.
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (package-initialize)
