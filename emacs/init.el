@@ -901,7 +901,7 @@
   (web-mode-css-indent-offset 2)
   (web-mode-code-indent-offset 2)
   :config
-  (dolist (ext '("\\.html" "\\.js" "\\.css"))
+  (dolist (ext '("\\.html" "\\.js" "\\.css" "\\.html.eex" "\\.pdf.eex" "\\.tsx"))
     (add-to-list 'auto-mode-alist `(,ext . web-mode))))
 
 (use-package nxml-mode
