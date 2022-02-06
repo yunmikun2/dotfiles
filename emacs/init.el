@@ -348,13 +348,6 @@
   (which-key-mode)
   :bind ("C-h <f5>" . 'which-key-C-h-dispatch))
 
-(use-package neotree
-  :ensure t
-  :bind ([f8] . 'neotree-toggle)
-  :custom
-  (neo-window-position 'right)
-  (neo-window-width 60))
-
 (use-package tramp
   :ensure t
   :defer t
