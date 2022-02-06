@@ -924,6 +924,9 @@
   :ensure t
   :defer t)
 
+(use-package nginx-mode
+  :ensure t
+  :defer t)
 
 (use-package restclient
   :ensure t
