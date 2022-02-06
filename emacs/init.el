@@ -494,12 +494,12 @@
 
 (use-package swiper
   :ensure t
-  :bind
-  ("C-s" . 'swiper-isearch)
-  ("C-M-s" . 'swiper-isearch-thing-at-point)
   :custom-face
   (swiper-line-face ((nil (:background "#ffffaa"))))
-  (swiper-match-face-1 ((nil (:background "#ffffaa")))))
+  (swiper-match-face-1 ((nil (:background "#ffffaa"))))
+  :bind
+  ("C-s" . 'swiper-isearch)
+  ("C-M-s" . 'swiper-isearch-thing-at-point))
 
 (defun counsel-maybe-projectile-switch-to-buffer ()
   (interactive)
