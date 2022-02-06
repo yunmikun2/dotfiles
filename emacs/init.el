@@ -1185,3 +1185,20 @@
 
 (use-package proof-general :ensure t)
 
+;; helpers
+
+(defun sum-check (list)
+  "Convinience function that sums check entries.
+
+Basically it just sums second items in cons pairs in the list. For
+example, given the following code
+
+    (sum-check `((item-1 . 10)
+                 (item-2 . 20)))
+
+it will give you `30'.
+"
+  (thread-last list
+    (seq-map #'cdr)
+    ((lambda (list)
+       (seq-reduce #'+ list 0)))))
