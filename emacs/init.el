@@ -1038,10 +1038,12 @@
 
 (use-package rust-mode
   :ensure t
-  :hook
-  (rust-mode . subword-mode)
   :custom
   (rust-format-on-save t)
+  (rust-rustfmt-switches '("+nightly" "--edition" "2018"))
+  :hook
+  (rust-mode . eglot)
+  (rust-mode . subword-mode)
   :bind
   (:map rust-mode-map
         ("C-c c b" . 'rust-compile)
