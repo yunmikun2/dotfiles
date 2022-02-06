@@ -609,18 +609,6 @@
                         :repo "yunmikun2/chevengur-imenu-mode")
   :hook elixir-mode)
 
-(defun my/prog/elixir-format-hook ()
-  (if (projectile-project-p)
-      (setq elixir-format-arguments
-            (list "--dot-formatter"
-                  (concat (locate-dominating-file buffer-file-name
-                                                  ".formatter.exs")
-                          ".formatter.exs")))
-    (setq elixir-format-arguments nil)))
-
-;; (use-package alchemist
-;;   :ensure t
-;;   :hook (elixir-mode . alchemist-mode))
 (use-package eglot
   :ensure t
   :config
@@ -641,7 +629,6 @@
 (use-package elixir-mode
   :ensure t
   :hook
-  ;; (elixir-format . my/prog/elixir-format-hook)
   (elixir-mode . eglot-ensure)
   (elixir-mode . dumb-jump-mode)
   (elixir-mode . subword-mode)
