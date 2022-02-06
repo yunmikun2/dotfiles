@@ -262,6 +262,8 @@
   :ensure t
   :custom
   (markdown-command "/usr/bin/pandoc")
+  :custom-face
+  (markdown-pre-face ((nil (:inherit org-block :font "Iosevka 12"))))
   :bind
   (:map markdown-mode-map
         ("C-c C-c v" . 'my/switch-markdown-mode)))
