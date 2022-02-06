@@ -972,8 +972,7 @@
   (eshell-toggle-init-function #'eshell-toggle-init-ansi-term)
   :quelpa
   (eshell-toggle :repo "4DA/eshell-toggle" :fetcher github :version original)
-  :bind
-  ("s-`" . eshell-toggle))
+  :bind ("s-`" . eshell-toggle))
 
 (defun ex-migration-run ()
   "Run migration in current file"
