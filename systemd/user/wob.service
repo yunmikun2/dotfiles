@@ -7,9 +7,9 @@ PartOf=graphical-session.target
 Type=simple
 StandardInput=socket
 
-ExecStart=/usr/bin/wob --border-color '#ee407ee7' \
-                       --background-color '#eef7f7f7' \
-                       --bar-color '#ee1b1918' \
+ExecStart=/usr/bin/wob --border-color '#407ee7ee' \
+                       --background-color '#f7f7f7ee' \
+                       --bar-color '#1b1918ee' \
                        --border 2 \
                        --offset 2 \
                        --padding 2 \
