@@ -243,6 +243,15 @@
   :ensure t
   :hook (org-mode . org-bullets-mode))
 
+(use-package project
+  :config
+  (defun my/project-try-mix (dir)
+    (when-let ((mix-dir (locate-dominating-file dir "mix.exs")))
+      (cons 'mix mix-dir)))
+  (cl-defmethod project-root ((project (head mix)))
+      (cdr project))
+  (add-to-list 'project-find-functions #'my/project-try-mix))
+
 (use-package markdown-mode
   :ensure t
   :custom
