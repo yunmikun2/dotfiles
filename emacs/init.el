@@ -236,6 +236,9 @@
      (haskell . t)
      (ocaml . t))))
 
+(use-package geiser :ensure t)
+(use-package geiser-guile :ensure t)
+
 (use-package org-bullets
   :ensure t
   :hook (org-mode . org-bullets-mode))
