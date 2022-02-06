@@ -1,0 +1,149 @@
+/*
+ * vim: ft=less
+ */
+
+@define-color border-color rgb(64, 126, 231);
+@define-color border-color-alt rgb(150, 150, 150);
+@define-color bg rgb(247, 247, 247);
+@define-color bg-hover rgb(64, 126, 231);
+@define-color bg-focus rgb(64, 126, 231);
+@define-color bg-selected rgb(64, 126, 231);
+@define-color text rgb(7, 7, 7);
+@define-color text-focus rgb(247, 247, 247);
+@define-color text-hover rgb(247, 247, 247);
+
+.notification-row {
+  outline: none;
+}
+.notification-row:focus,
+.notification-row:hover {
+  background: @bg;
+}
+
+.notification {
+  margin: 6px 12px;
+  padding: 0;
+}
+
+.notification-content {
+  background: transparent;
+  padding: 6px;
+}
+
+.close-button {
+  background: @bg;
+  color: @text;
+  text-shadow: none;
+  border: 1px solid @border-color-alt;
+  padding: 0 2px;
+}
+.close-button:hover {
+  border: 1px solid @border-color;
+  box-shadow: none;
+  background: @bg-hover;
+  color: @text-hover;
+}
+
+.notification-default-action,
+.notification-action {
+  padding: 4px;
+  margin: 0;
+  box-shadow: none;
+  background: @bg;
+  border: 1px solid @border-color-alt;
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+}
+
+.notification-default-action {
+}
+
+/* When alternative actions are visible */
+.notification-default-action:not(:only-child) {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.notification-action {
+  border-top: none;
+  border-right: none;
+}
+
+/* add bottom border radius to eliminate clipping */
+.notification-action:first-child {
+  border-bottom-left-radius: 10px;
+}
+.notification-action:last-child {
+  border-bottom-right-radius: 10px;
+  border-right: 1px solid @border-color-alt;
+}
+
+.image {
+}
+
+.body-image {
+  margin-top: 6px;
+  background-color: white;
+}
+
+.summary {
+  color: @text;
+  text-shadow: none;
+}
+
+.time {
+  color: @text;
+  text-shadow: none;
+}
+
+.body {
+  background: @bg;
+  color: @text;
+  text-shadow: none;
+}
+
+.top-action-title {
+  color: @text;
+  text-shadow: none;
+}
+
+.control-center-clear-all {
+  color: @text;
+  text-shadow: none;
+  background: @bg;
+  border: 1px solid @border-color-alt;
+  box-shadow: none;
+}
+.control-center-clear-all:hover {
+  color: @text-hover;
+  background: @bg-hover;
+}
+
+.control-center-dnd {
+  background: @bg;
+  border: 1px solid @border-color-alt;
+  box-shadow: none;
+}
+
+.control-center-dnd:checked {
+  background: @bg-selected;
+}
+.control-center-dnd slider {
+  background: @bg;
+}
+
+.control-center {
+  border: 2px solid @border-color;
+  background: @bg;
+}
+.control-center-list {
+  border-left: 2px solid @border-color;
+  border-right: 2px solid @border-color;
+  background: transparent;
+}
+
+.floating-notifications {
+  background: transparent;
+}

@@ -142,6 +142,10 @@ label:focus {
   /* background: #407ee7; */
 }
 
+#custom-notification {
+  font-family: "NotoSansMono Nerd Font";
+}
+
 #idle_inhibitor {
   padding: 0 5px;
 }
