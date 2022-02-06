@@ -483,14 +483,14 @@
 
 (use-package multiple-cursors
   :ensure t
+  :custom
+  (mc/always-run-for-all 1)
   :bind
   ("C-." . 'mc/mark-next-like-this)
   ("C->" . 'mc/unmark-next-like-this)
   ("C-," . 'mc/mark-previous-like-this)
   ("C-<" . 'mc/unmark-previous-like-this)
-  ("C-c C-<" . 'mc/mark-all-like-this)
-  :custom
-  (mc/always-run-for-all 1))
+  ("C-c C-<" . 'mc/mark-all-like-this))
 
 (use-package swiper
   :ensure t
