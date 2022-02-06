@@ -243,6 +243,8 @@
   :ensure t
   :hook (org-mode . org-bullets-mode))
 
+(use-package hide-mode-line :ensure t)
+
 (use-package project
   :config
   (defun my/project-try-mix (dir)
