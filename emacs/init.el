@@ -214,9 +214,11 @@
 ")))
 
 (use-package ob-elixir
-  ;; :ensure t
-  :load-path "~/test/ob-elixir"
-  )
+  :ensure t
+  :quelpa
+  (ob-elixir :fetcher git
+             :branch "master"
+             :url "https://git.sr.ht/~sokolov/ob-elixir"))
 
 (use-package ob-restclient :ensure t)
 
