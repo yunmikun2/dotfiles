@@ -1,7 +1,7 @@
 {
   "height": 24,
   // Choose the order of the modules
-  "modules-left": ["sway/window"],
+  "modules-left": ["custom/apps", "sway/window"],
   "modules-center": ["clock"],
   "modules-right": [
     "sway/mode",
@@ -18,6 +18,13 @@
     "idle_inhibitor"
   ],
   // Modules configuration
+  "custom/apps": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "🏠"
+    },
+    "on-click": "nwg-drawer"
+  },
   "sway/window": {
     "tooltip": false
   },
