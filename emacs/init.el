@@ -114,28 +114,35 @@
   :custom (use-package-enable-imenu-support t))
 
 (use-package cus-edit
+  :defer t
   :custom (custom-file null-device "Don't store customizations"))
 
 (use-package gcmh
   :ensure t
+  :defer t
   :init (gcmh-mode 1))
 
 (use-package system-packages
   :ensure t
+  :defer t
   :custom (system-packages-noconfirm t))
 
-(use-package use-package-ensure-system-package :ensure t)
+(use-package use-package-ensure-system-package
+  :ensure t)
 
 ;; :diminish keyword
-(use-package diminish :ensure t)
+(use-package diminish
+  :ensure t
+  :defer t)
 
 ;; :bind keyword
-(use-package bind-key :ensure t)
+(use-package bind-key
+  :ensure t
+  :defer t)
 
 ;; :quelpa keyword
 (use-package quelpa
   :ensure t
-  :defer t
   :custom (quelpa-update-melpa-p nil "Don't update the MELPA git repo."))
 
 (use-package quelpa-use-package :ensure t)
@@ -178,6 +185,7 @@
 
 (use-package org
   :ensure t
+  :defer t
   :custom
   (org-adapt-indentation nil)
   (org-edit-src-content-indentation 0)
@@ -249,6 +257,7 @@
   :bind ([f9] . 'sublimity-mode))
 
 (use-package sublimity-map
+  :defer t
   :config (sublimity-map-set-delay nil)
   :custom
   (sublimity-map-size 20)
@@ -278,6 +287,7 @@
 
 (use-package ivy
   :ensure t
+  :defer t
   :config (ivy-mode 1)
   :custom (dumb-jump-selector 'ivy))
 
@@ -311,6 +321,7 @@
 
 (use-package tramp
   :ensure t
+  :defer t
   :custom (tramp-default-method "ssh"))
 
 (defun ssh-shell (host)
@@ -361,14 +372,18 @@
   ("C-c g s" . git-gutter:popup-hunk)
   ("C-c g m" . git-gutter:mark-hunk))
 
-(use-package magit :ensure t)
+(use-package magit
+  :ensure t
+  :defer t)
 
 (use-package magit-todos
   :ensure t
+  :defer t
   :after magit)
 
 (use-package forge
   :ensure t
+  :defer t
   :after magit
   :config
   (setq auth-sources '("~/.authinfo"))
@@ -405,6 +420,7 @@
 
 (use-package auto-complete
   :ensure t
+  :defer t
   :config (auto-complete-mode 1))
 
 (use-package company
@@ -415,6 +431,7 @@
 
 (use-package company-quickhelp
   :ensure t
+  :defer t
   :config (company-quickhelp-mode 1))
 
 (use-package projectile
@@ -665,6 +682,7 @@
 ;; (use-package iex-mode :load-path "~/.emacs.d/mlibs/")
 
 (use-package iex-mode
+  :defer t
   :quelpa
   (iex-mode :fetcher git
             :branch "rework"
@@ -692,6 +710,7 @@
 
 (use-package pug-mode
   :ensure t
+  :defer t
   :custom (pug-tab-width 2))
 
 (use-package ruby-mode
@@ -838,25 +857,30 @@
 
 (use-package jedi
   :ensure t
+  :defer t
   :custom (jedi:complete-on-dot 1))
 
 (use-package python-mode
   :ensure t
+  :defer t
   ;; :hook (python-mode . jedi:ac-setup)
   )
 
 (use-package ispell
   :ensure t
+  :defer t
   :custom
   (ispell-program-name "hunspell")
   (ispell-local-dictionary "en_US"))
 
 (use-package js
   :ensure t
+  :defer t
   :custom (js-indent-level 2))
 
 (use-package sh-script
   :ensure t
+  :defer t
   :custom
   (sh-basic-offset 2)
   (sh-indentation 2))
@@ -872,6 +896,7 @@
     (add-to-list 'auto-mode-alist `(,ext . web-mode))))
 
 (use-package nxml-mode
+  :defer t
   :custom
   (nxml-slash-auto-complete-flag t)
   (nxml-child-indent 4)
@@ -886,11 +911,14 @@
   (indent-for-tab-command))
 (put 'set-goal-column 'disabled nil)
 
-(use-package systemd :ensure t)
-(use-package nginx-mode :ensure t)
+(use-package systemd
+  :ensure t
+  :defer t)
+
 
 (use-package restclient
   :ensure t
+  :defer t
   :config (add-to-list 'auto-mode-alist '("\\.http" . restclient-mode)))
 
 ;; TODO!: Make it copy a path relative to project root.
@@ -904,7 +932,9 @@
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
-(use-package request :ensure t)
+(use-package request
+  :ensure t
+  :defer t)
 
 (load-file "~/.emacs.d/elonsoft-is.el")
 
@@ -970,6 +1000,7 @@
     (exunit-do-compile "mix compile --warnings-as-errors")))
 
 (use-package smerge-mode
+  :defer t
   :custom
   (smerge-command-prefix "\C-cm")
   :config
@@ -980,6 +1011,7 @@
 
 (use-package sql-indent
   :ensure t
+  :defer t
   :custom (sql-indent-offset 2))
 
 (defun rust-check ()
@@ -1003,10 +1035,11 @@
 
 (use-package info-rename-buffer
   :ensure t
-  :config
-  (info-rename-buffer-mode))
+  :defer t
+  :config (info-rename-buffer-mode))
 
 (use-package beam-mode
+  :defer t
   :load-path "~/.emacs.d/mlibs")
 
 ;; (use-package beam-file-mode
@@ -1017,7 +1050,8 @@
 ;;https://github.com/legoscia/erlang-extra-modes
 
 (use-package json-snatcher
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (load "~/.opam/default/share/emacs/site-lisp/tuareg-site-file")
 
@@ -1025,6 +1059,7 @@
 
 (use-package sml-mode
   :ensure t
+  :defer t
   :custom (sml-font-lock-symbols t))
 
 (defun shell-region (start end)
@@ -1056,12 +1091,14 @@
 ;;   ;; (elisp-format-newline-keyword-addons-list '("object"))
 ;;   )
 
-(use-package pp :ensure t)
+(use-package pp
+  :ensure t
+  :defer t)
 
 (use-package graphviz-dot-mode
   :ensure t
-  :custom
-  (graphviz-dot-indent-width 2))
+  :defer t
+  :custom (graphviz-dot-indent-width 2))
 
 ;; (use-package company-graphviz-dot :ensure t)
 
@@ -1074,11 +1111,14 @@
     (shell-command-on-region beg end command t t)))
 
 (use-package po-mode
+  :defer t
   :load-path "~/.local/share/emacs/site-lisp/"
   :commands (po-mode))
 
 ;; From flashbacks.
-(use-package elixir-compile :ensure t)
+(use-package elixir-compile
+  :ensure t
+  :defer t)
 
 (use-package js-mode
   :hook (js-mode . subword-mode))
