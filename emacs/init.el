@@ -245,6 +245,10 @@
 
 (use-package hide-mode-line :ensure t)
 
+(use-package epresent
+  :ensure t
+  :custom (epresent-text-scale 200))
+
 (use-package project
   :config
   (defun my/project-try-mix (dir)
