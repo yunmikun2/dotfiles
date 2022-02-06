@@ -416,9 +416,9 @@
   :after magit
   :config
   (setq auth-sources '("~/.authinfo"))
-  (add-to-list
-   'forge-alist
-   '("git.elonsoft.ru" "git.elonsoft.ru/api/v4" "git.elonsoft.ru" forge-gitlab-repository)))
+  (add-to-list 'forge-alist
+               '("git.elonsoft.ru" "git.elonsoft.ru/api/v4" "git.elonsoft.ru"
+                 forge-gitlab-repository)))
 
 (use-package ranger
   :ensure t
