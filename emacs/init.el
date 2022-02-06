@@ -1181,3 +1181,7 @@
         ("C-c m d" . 'markdown-toc-delete-toc)
         ("C-c m v" . 'markdown-toc-version)))
 
+;; coq
+
+(use-package proof-general :ensure t)
+
