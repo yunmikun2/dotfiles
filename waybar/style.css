@@ -55,7 +55,8 @@ window#waybar {
 #pulseaudio,
 #network,
 #tray,
-#mode {
+#mode,
+#custom-notification {
   padding: 0 2px;
   margin: 0 2px;
 }
@@ -65,7 +66,8 @@ window#waybar {
 #backlight,
 #network,
 #tray,
-#mode {
+#mode,
+#custom-notification {
   color: #1B1918;
 }
 
@@ -125,10 +127,6 @@ label:focus {
   background-color: #000000;
 }
 
-#tray {
-  /* background-color: #2980b9; */
-}
-
 #language {
   background: #1b1918;
   font-weight: bold;
@@ -136,10 +134,6 @@ label:focus {
   padding: 0 5px;
   margin: 0 5px;
   min-width: 16px;
-}
-
-#tray {
-  /* background: #407ee7; */
 }
 
 #custom-notification {

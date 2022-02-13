@@ -14,8 +14,8 @@
     "pulseaudio",
     "pulseaudio#mic",
     "pulseaudio#bluetooth",
-    "tray",
     "custom/notification",
+    "tray",
     "idle_inhibitor"
   ],
   // Modules configuration
