@@ -13,6 +13,19 @@ window#waybar {
   color: #1b1918;
 }
 
+tooltip {
+  color: #1b1918;
+  background-color: #f7f7f7;
+  text-shadow: none;
+  border: 1px solid;
+}
+
+tooltip label {
+  color: #1b1918;
+  background-color: #f7f7f7;
+  text-shadow: none;
+}
+
 #custom-apps {
   padding: 0 5px;
 }
@@ -21,11 +34,6 @@ window#waybar {
   font-weight: bold;
   /* color: #ffffff;
      background-color: #407ee7; */
-}
-
-#clock.tooltip {
-  color: #1b1918;
-  background-color: #1b1918;
 }
 
 #workspaces button {
@@ -59,6 +67,23 @@ window#waybar {
 #custom-notification {
   padding: 0 2px;
   margin: 0 2px;
+}
+
+#battery {
+  margin-right: 10px;
+}
+
+#network {
+  margin-right: 5px;
+}
+
+#tray {
+  margin-left: 8px;
+}
+
+#backlight,
+#pulseaudio {
+  min-width: 18px;
 }
 
 #battery,

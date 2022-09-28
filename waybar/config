@@ -56,6 +56,7 @@
   },
   "clock": {
     "timezone": "Europe/Moscow",
+    "tooltip": true,
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format": "{:%a,  %H:%M}",
     "format-alt": "{:%Y-%m-%d %H:%M}"
@@ -67,14 +68,19 @@
       "critical": 15
     },
     "format": "{icon}",
-    "format-alt": "{capacity}% {time} {icon}",
-    "tooltip": false,
+    "tooltip-format": "Capacity: {capacity}%\n{timeTo}",
+    "tooltip": true,
     "format-icons": ["", "", "", "", ""]
   },
   "backlight": {
-    "format": "",
-    "format-alt": "{percent}% "
-    // "format-icons": ["", "", "", "", ""]
+    "format": "{icon}",
+    "format-alt": "{percent}% {icon}",
+    "states": {
+      "dark": 25,
+      "medium": 50,
+      "bright": 75
+    },
+    "format-icons": ["", "", "", "", "", ""]
   },
   "pulseaudio": {
     "scroll-step": 0, // %, can be a float
@@ -94,7 +100,8 @@
       "car": "",
       "default": ["", "", "", ""]
     },
-    "tooltip": false,
+    "tooltip": true,
+    "tooltip-format": "{volume}%",
     "on-click": "pavucontrol",
     "on-click-right": "blueman-manager"
   },
@@ -118,15 +125,16 @@
     "format-source": "",
     "format-source-muted": "",
     "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-    "tooltip": false
+    "tooltip": true,
+    "tooltip-format": "{volume}%"
   },
   "network": {
     "format-wifi": "",
     "format-ethernet": "",
     "format-linked": "",
     "format-disconnected": "⚠",
-    "format-alt": "{ifname}: {ipaddr}/{cidr} {essid}",
-    "tooltip": false
+    "tooltip": true,
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n{essid}\nDown: {bandwidthDownBits}\nUp: {bandwidthUpBits}"
   },
   "sway/language": {
     "tooltip": false
