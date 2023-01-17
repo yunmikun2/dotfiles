@@ -70,7 +70,8 @@ tooltip label {
 }
 
 #battery {
-  margin-right: 10px;
+  padding-right: 14px;
+  margin-right: -2px;
 }
 
 #network {
@@ -123,6 +124,21 @@ tooltip label {
   font-family: 'Product Sans', 'Font Awesome 5 Free Solid', Source Code Pro, Roboto, sans-serif;
 }
 
+#battery
+{
+  font-size: 30px;
+  margin-bottom: -7px;
+  margin-top: -7px;
+}
+
+#backlight,
+#network
+{
+  font-size: 25px;
+  margin-bottom: -5px;
+  margin-top: -5px;
+}
+
 #battery {
   color: #1b1918;
   background-color: #f7f7f7;
@@ -167,4 +183,7 @@ label:focus {
 
 #idle_inhibitor {
   padding: 0 5px;
+  font-size: 30px;
+  margin-bottom: -7px;
+  margin-top: -7px;
 }

@@ -13,7 +13,6 @@
     "backlight",
     "pulseaudio",
     "pulseaudio#mic",
-    "pulseaudio#bluetooth",
     "custom/notification",
     "tray",
     "idle_inhibitor"
@@ -24,7 +23,8 @@
     "format-icons": {
       "default": "🏠"
     },
-    "on-click": "nwg-drawer"
+    "on-click": "nwg-drawer",
+    "tooltip": false
   },
   "sway/window": {
     "tooltip": false
