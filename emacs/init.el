@@ -191,7 +191,7 @@
       (funcall-interactively #'project-switch-to-buffer)
     (funcall-interactively #'counsel-switch-buffer)))
 
-(bind-key (kbd "C-r") #'counsel-projectile-ag)
+(bind-key (kbd "C-r") #'counsel-ag)
 (bind-key (kbd "C-x p") #'project-switch-project)
 (bind-key (kbd "C-x C-b") #'counsel-switch-buffer)
 (bind-key (kbd "C-x b") #'counsel-maybe-project-switch-to-buffer)
