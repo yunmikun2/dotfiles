@@ -196,7 +196,6 @@
 (bind-key (kbd "C-x C-b") #'counsel-switch-buffer)
 (bind-key (kbd "C-x b") #'counsel-maybe-project-switch-to-buffer)
 (bind-key (kbd "C-x f") #'project-find-file)
-;; (bind-key (kbd "C-x C-f") #'counsel-find-file)
 ;; (:map projectile-mode-map
 ;;       ("C-x i" . 'counsel-imenu))
 
