@@ -8,5 +8,9 @@ include config.d/iodev.conf
 # pcmanfm automount
 exec --no-startup-id pcmanfm -d &
 
+# some magic
+exec dbus-sway-environment
+exec configure-gtk
+
 # Start sway session target to run systemd-enabled services.
 exec "systemctl --user import-environment; systemctl --user start sway-session.target"
