@@ -354,6 +354,9 @@
 (setq plantuml-executable-path "/usr/bin/plantuml")
 (setq org-plantuml-executable-path "/usr/bin/plantuml")
 
+;; direnv
+(envrc-global-mode)
+
 ;; helpers
 
 (defun sum-check (list)
