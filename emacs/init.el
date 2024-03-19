@@ -191,13 +191,14 @@
 (defun counsel-maybe-project-switch-to-buffer ()
   (interactive)
   (if (eq nil (project-current))
-      (funcall-interactively #'project-switch-to-buffer)
-    (funcall-interactively #'counsel-switch-buffer)))
+      (funcall-interactively #'counsel-switch-buffer)
+    (funcall-interactively #'project-switch-to-buffer)))
 
 (bind-key (kbd "C-r") #'counsel-ag)
 (bind-key (kbd "C-x p") #'project-switch-project)
 (bind-key (kbd "C-x C-b") #'counsel-switch-buffer)
-(bind-key (kbd "C-x b") #'counsel-maybe-project-switch-to-buffer)
+;; (bind-key (kbd "C-x b") #'counsel-maybe-project-switch-to-buffer)
+(bind-key (kbd "C-x b") #'project-switch-to-buffer)
 (bind-key (kbd "C-x f") #'project-find-file)
 (bind-key (kbd "C-x i") #'counsel-imenu)
 
