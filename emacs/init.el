@@ -44,6 +44,9 @@
 (setq-default cursor-type 'bar)
 (setq frame-title-format '("Emacs: %f"))
 
+(setq-default indent-tabs-mode nil)
+(setq tab-width 2)
+
 (require 'sublime-themes)
 (load-theme 'mccarthy t)
 
