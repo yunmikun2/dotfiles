@@ -289,13 +289,24 @@
 
 (add-to-list 'auto-mode-alist '("\\.http" . restclient-mode))
 
-;; TODO!: Make it copy a path relative to project root.
+(defun my/project-file-name ()
+  (require 'project)
+  (let ((project (project-current))
+        (current (buffer-file-name)))
+    (when (and project current)
+      (file-relative-name current (project-root project)))))
+
+(defun my/cp-project-file-name ()
+  (interactive)
+  (let ((filename (my/project-file-name)))
+    (when filename
+      (kill-new filename)
+      (message "Copied project file name '%s' to the clipboard." filename))))
+
 (defun my/cp-current-file-name ()
   "Copy the current buffer file name to the clipboard."
   (interactive)
-  (let ((filename (if (equal major-mode 'dired-mode)
-                      default-directory
-                    (buffer-file-name))))
+  (let ((filename (buffer-file-name)))
     (when filename
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
