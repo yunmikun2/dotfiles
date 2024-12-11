@@ -373,9 +373,13 @@
 ;;       ("C-c c r" . 'rust-run)
 ;;       ("C-c c l" . 'rust-run-clippy))
 
-(with-eval-after-load "elixir-mode"
-  ;; (add-hook 'elixir-mode-hook 'eglot)
-  (add-hook 'elixir-mode-hook 'dumb-jump-mode))
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs '((elixir-mode elixir-ts-mode) "lexical")))
+
+(with-eval-after-load 'elixir-ts-mode
+  (add-hook 'elixir-ts-mode-hook 'eglot-ensure)
+  (add-hook 'elixir-ts-mode-hook 'dumb-jump-mode)
+  (add-hook 'elixir-ts-mode-hook 'subword-mode))
 
 (require 'info-rename-buffer)
 (info-rename-buffer-mode)
