@@ -328,6 +328,16 @@
 ;; git-timemachine
 (bind-key (kbd "C-c g t") 'git-timemachine)
 
+;; gitignore
+(with-eval-after-load 'vc-hooks
+  (add-to-list 'vc-directory-exclusion-list ".direnv")
+  (add-to-list 'vc-directory-exclusion-list ".envrc")
+  (add-to-list 'vc-directory-exclusion-list ".elixir_ls")
+  (add-to-list 'vc-directory-exclusion-list ".lexical")
+  (add-to-list 'vc-directory-exclusion-list "./_build")
+  (add-to-list 'vc-directory-exclusion-list "./deps")
+  (add-to-list 'vc-directory-exclusion-list "./cover"))
+
 ;; auto-complete
 (auto-complete-mode 1)
 
