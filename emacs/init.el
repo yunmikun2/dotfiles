@@ -42,7 +42,20 @@
 (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/backups" t)))
 (setq create-lockfiles nil)
 (setq-default cursor-type 'bar)
-(setq frame-title-format '("Emacs: %f"))
+
+(let ((content
+       '(let* ((project (project-current))
+               (project-content
+                (when project
+                  (concat "[" (project-name project) "]")))
+               (current (buffer-file-name))
+               (buffer-content
+                (when current
+                  (if project
+                      (concat "/" (file-relative-name current (project-root project)))
+                    current))))
+          (concat project-content buffer-content))))
+  (setq frame-title-format `("Emacs " (:eval ,content))))
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 2)
