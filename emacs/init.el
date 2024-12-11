@@ -34,7 +34,6 @@
           downcase-region
           upcase-region))
 (defalias 'yes-or-no-p 'y-or-n-p)
-;; (add-to-list 'load-path "~/.emacs.d/mlibs/")
 
 (setq inhibit-startup-screen t)
 (setq ring-bell-function 'ignore)
@@ -395,8 +394,6 @@
 (require 'info-rename-buffer)
 (info-rename-buffer-mode)
 
-(use-package beam-mode :load-path "~/.emacs.d/mlibs")
-
 ;; dockerfile-mode
 (setq dockerfile-use-sudo t)
 
@@ -414,7 +411,7 @@
 (setq org-plantuml-executable-path "/usr/bin/plantuml")
 
 ;; direnv
-(envrc-global-mode)
+(require 'envrc)
 
 ;; helpers
 
