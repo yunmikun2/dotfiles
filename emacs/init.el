@@ -95,6 +95,11 @@
 (with-eval-after-load 'prog-mode
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
+;; bookmarks
+(require 'bookmark)
+(setq bookmark-save-flag 1)
+(bind-key (kbd "C-x r k") 'bookmark-delete)
+
 (with-eval-after-load "org"
   (setq org-adapt-indentation nil)
   (setq org-edit-src-content-indentation 0)
