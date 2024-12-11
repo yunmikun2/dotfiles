@@ -92,7 +92,8 @@
 (bind-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; rainbow-delimiters
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(with-eval-after-load 'prog-mode
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (with-eval-after-load "org"
   (setq org-adapt-indentation nil)
@@ -159,9 +160,17 @@
   (cdr project))
 (add-to-list 'project-find-functions #'my/project-try-mix)
 
-(add-hook 'text-mode-hook 'auto-fill-mode)
-(add-hook 'markdown-mode-hook 'auto-fill-mode)
-(add-hook 'org-mode-hook 'auto-fill-mode)
+(with-eval-after-load 'text-mode
+  ;; (add-hook 'text-mode-hook 'auto-fill-mode)
+  (add-hook 'text-mode-hook 'visual-line-mode))
+
+(with-eval-after-load 'markdown-mode
+  ;; (add-hook 'markdown-mode-hook 'auto-fill-mode)
+  (add-hook 'markdown-mode-hook 'visual-line-mode))
+
+(with-eval-after-load 'org-mode
+  ;; (add-hook 'org-mode-hook 'auto-fill-mode)
+  (add-hook 'org-mode-hook 'visual-line-mode))
 
 (bind-key (kbd "M-o")
 	  (lambda ()
