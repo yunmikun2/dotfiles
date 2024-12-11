@@ -61,6 +61,13 @@
 ;; Modified git line.
 (set-face-attribute 'mood-line-status-info nil :foreground "#EEE")
 
+(with-eval-after-load 'hl-line
+  ;; (require 'hl-line)
+  (set-face-attribute 'hl-line nil
+                      :background "#335EA8"
+                      :foreground "#EEE"
+                      :underline nil))
+
 (require 'reverse-im)
 (reverse-im-activate "russian-computer")
 
