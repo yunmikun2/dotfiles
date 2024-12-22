@@ -50,7 +50,8 @@ tooltip label {
 }
 
 #workspaces button.urgent {
-  background-color: #f22c40;
+  border: 2px solid #f22c40;
+  border-radius: 3px;
 }
 
 #mode {
